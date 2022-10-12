@@ -17,6 +17,6 @@ class ExampleUnitTest {
 
     @Test
     fun `simple test `(){
-        assertEquals(4,4*2/2)
+        assertEquals(4,4*2/2*5)
     }
 }
