@@ -9,13 +9,18 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
+  strategy:
+    matrix:
+      jdk10:
+        jdkVersion: "1.10"
+
 steps:
 
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '11'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+#- task: JavaToolInstaller@0
+#  inputs:
+#    versionSpec: '11'
+#    jdkArchitectureOption: 'x64'
+#    jdkSourceOption: 'PreInstalled'
 
 - task: Gradle@3
   inputs:
