@@ -22,16 +22,16 @@ steps:
 #    jdkArchitectureOption: 'x64'
 #    jdkSourceOption: 'PreInstalled'
 
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'test'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    testRunTitle: 'Simple Test'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
+#- task: Gradle@3
+#  inputs:
+#    gradleWrapperFile: 'gradlew'
+#    tasks: 'test'
+#    publishJUnitResults: true
+#    testResultsFiles: '**/TEST-*.xml'
+#    testRunTitle: 'Simple Test'
+#    javaHomeOption: 'JDKVersion'
+#    sonarQubeRunAnalysis: false
+#    spotBugsAnalysis: false
 
 - task: Gradle@2
   inputs:
