@@ -32,3 +32,13 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'output'
     publishLocation: 'Container'
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'app center'
+    appSlug: 'DevStudyApp'
+    appFile: '$(Build.ArtifactStagingDirectory)'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    releaseNotesInput: 'New version realse'
+    destinationType: 'groups'
