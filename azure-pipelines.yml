@@ -31,7 +31,7 @@ steps:
 - task: JFrogGradle@1
   inputs:
     gradleBuildFile: 'build.gradle'
-    tasks: 'artifactoryPublish'
+    tasks: 'network:artifactoryPublish'
     artifactoryResolverService: 'Study artifactory'
     sourceRepo: 'study-gradle-dev'
     artifactoryDeployerService: 'Study artifactory'
