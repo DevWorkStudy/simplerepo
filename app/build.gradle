@@ -61,10 +61,10 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 }
-
-task exampleTask {
-    def name = project.property("name")
-    def version = project.property("version")
-    println name
-    println version
-}
+//
+//task exampleTask {
+//    def name = project.property("name")
+//    def version = project.property("version")
+//    println name
+//    println version
+//}
