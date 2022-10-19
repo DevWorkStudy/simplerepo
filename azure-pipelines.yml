@@ -14,24 +14,22 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'exampleTask -Pname="Hello World" -Pversion="1.0.0"'
+    tasks: 'assembleDebug'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
+- task: JFrogGradle@1
+  inputs:
+    gradleBuildFile: 'build.gradle'
+    tasks: 'artifactoryPublish'
+    artifactoryResolverService: 'Study artifactory'
+    sourceRepo: 'study-gradle-dev'
+    artifactoryDeployerService: 'Study artifactory'
+    targetRepo: 'study-gradle-dev-local'
 
-# - task: Gradle@3
-#   inputs:
-#     gradleWrapperFile: 'gradlew'
-#     tasks: 'assembleDebug'
-#     publishJUnitResults: false
-#     testResultsFiles: '**/TEST-*.xml'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.11'
-#     sonarQubeRunAnalysis: false
-#     spotBugsAnalysis: false
 
 # - task: CopyFiles@2
 #   inputs:
