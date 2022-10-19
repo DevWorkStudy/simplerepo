@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id "com.jfrog.artifactory" version "4.29.0"
+    id 'maven-publish'
 }
 
 android {
@@ -38,4 +40,50 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+
+
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'study-gradle-dev-local'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+
+        }
+        defaults {
+            publication('mavenJava')
+            publishArtifacts = true
+            publishPom
+        }
+    }
+//    resolve {
+//        repository {
+//            repoKey = 'study-gradle-dev'
+//            username = "${artifactory_user}"
+//            password = "${artifactory_password}"
+//            maven = true
+//
+//        }
+//    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.study'
+                artifactId = 'presentation'
+                version = "0.0.1"
+            }
+        }
+    }
+
+    artifactoryPublish {
+        publications(publishing.publications.release)
+    }
 }
