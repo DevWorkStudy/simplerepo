@@ -42,7 +42,7 @@ steps:
 
 - task: JFrogGradle@1
   inputs:
-    gradleBuildFile: '$(build.artifactStagingDirectory)/presentation/build.gradle'
+    gradleBuildFile: '$(Build.ArtifactStagingDirectory)/presentation/build.gradle'
     tasks: 'presentation:artifactoryPublish'
     artifactoryDeployerService: 'Study artifactory'
     targetRepo: 'study-gradle-dev-local'
