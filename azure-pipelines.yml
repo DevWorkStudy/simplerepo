@@ -31,12 +31,15 @@ steps:
 - task: JFrogGradle@1
   inputs:
     gradleBuildFile: 'build.gradle'
-    tasks: 'network:artifactoryPublish'
+    tasks: 'presentation:artifactoryPublish'
     artifactoryResolverService: 'Study artifactory'
     sourceRepo: 'study-gradle-dev'
     artifactoryDeployerService: 'Study artifactory'
     targetRepo: 'study-gradle-dev-local'
+    usesPlugin: true
     useWrapper: true
+    deployIvyDesc: false
+
 
 # - task: JFrogGradle@1
 #   inputs:
