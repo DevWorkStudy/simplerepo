@@ -11,6 +11,12 @@ pool:
 
 steps:
 
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
@@ -23,8 +29,6 @@ steps:
     spotBugsAnalysis: false
 - task: JFrogGradle@1
   inputs:
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
     gradleBuildFile: 'build.gradle'
     tasks: 'artifactoryPublish'
     artifactoryResolverService: 'Study artifactory'
