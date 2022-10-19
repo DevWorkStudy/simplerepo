@@ -14,11 +14,9 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'exampleTask -Pname="Hello World" -Pversion="1.0.0"'
+    tasks: 'exampleTask -Pname="Hello World" -Pversion="1.2.0"'
     publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
     sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
+    spotBugsAnalysis: false'
 
