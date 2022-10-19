@@ -84,7 +84,7 @@ afterEvaluate {
         }
     }
 
-//    artifactoryPublish {
-//        publications(publishing.publications.release)
-//    }
+    artifactoryPublish {
+        publications(publishing.publications.release)
+    }
 }
