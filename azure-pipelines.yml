@@ -40,9 +40,10 @@ steps:
 #     useWrapper: true
 #     deployIvyDesc: false
 
+
 - task: JFrogGradle@1
   inputs:
-    gradleBuildFile: '$(Build.ArtifactStagingDirectory)/presentation/build.gradle'
+    gradleBuildFile: 'build.gradle'
     tasks: 'presentation:artifactoryPublish'
     artifactoryDeployerService: 'Study artifactory'
     targetRepo: 'study-gradle-dev-local'
