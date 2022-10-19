@@ -3,8 +3,8 @@
 # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
-#trigger:
-#- main
+# - main
+# trigger:
 
 pool:
   vmImage: 'macos-latest'
@@ -14,7 +14,7 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'assembleDebug'
+    tasks: 'exampleTask -Pname="Hello World" -Pversion="1.0.0"'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
@@ -22,23 +22,34 @@ steps:
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
 
-- task: CopyFiles@2
-  inputs:
-    Contents: '**/*.apk'
-    TargetFolder: '$(build.artifactStagingDirectory)'
+# - task: Gradle@3
+#   inputs:
+#     gradleWrapperFile: 'gradlew'
+#     tasks: 'assembleDebug'
+#     publishJUnitResults: false
+#     testResultsFiles: '**/TEST-*.xml'
+#     javaHomeOption: 'JDKVersion'
+#     jdkVersionOption: '1.11'
+#     sonarQubeRunAnalysis: false
+#     spotBugsAnalysis: false
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'output'
-    publishLocation: 'Container'
+# - task: CopyFiles@2
+#   inputs:
+#     Contents: '**/*.apk'
+#     TargetFolder: '$(build.artifactStagingDirectory)'
 
-- task: AppCenterDistribute@3
-  inputs:
-    serverEndpoint: 'app center'
-    appSlug: 'DevWorkStudy/DevStudyApp'
-    appFile: '$(Build.ArtifactStagingDirectory)/app/build/outputs/apk/debug/app-debug.apk'
-    symbolsOption: 'Android'
-    releaseNotesOption: 'input'
-    releaseNotesInput: 'New version realse'
-    destinationType: 'groups'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     ArtifactName: 'output'
+#     publishLocation: 'Container'
+
+# - task: AppCenterDistribute@3
+#   inputs:
+#     serverEndpoint: 'app center'
+#     appSlug: 'DevWorkStudy/DevStudyApp'
+#     appFile: '$(Build.ArtifactStagingDirectory)/app/build/outputs/apk/debug/app-debug.apk'
+#     symbolsOption: 'Android'
+#     releaseNotesOption: 'input'
+#     releaseNotesInput: 'New version realse'
+#     destinationType: 'groups'
