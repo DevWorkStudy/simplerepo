@@ -17,6 +17,7 @@ steps:
     tasks: 'exampleTask -Pname="Hello World" -Pversion="1.2.0"'
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
     sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false'
+    spotBugsAnalysis: false
 
