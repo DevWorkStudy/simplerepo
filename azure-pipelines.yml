@@ -17,16 +17,17 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'assembleDebug'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
+# - task: Gradle@3
+#   inputs:
+#     gradleWrapperFile: 'gradlew'
+#     tasks: 'assembleDebug'
+#     publishJUnitResults: false
+#     testResultsFiles: '**/TEST-*.xml'
+#     javaHomeOption: 'JDKVersion'
+#     jdkVersionOption: '1.11'
+#     sonarQubeRunAnalysis: false
+#     spotBugsAnalysis: false
+
 - task: JFrogGradle@1
   inputs:
     gradleBuildFile: 'build.gradle'
@@ -35,6 +36,17 @@ steps:
     sourceRepo: 'study-gradle-dev'
     artifactoryDeployerService: 'Study artifactory'
     targetRepo: 'study-gradle-dev-local'
+    usesPlugin: true
+    useWrapper: true
+
+# - task: JFrogGradle@1
+#   inputs:
+#     gradleBuildFile: 'build.gradle'
+#     tasks: 'artifactoryPublish'
+#     artifactoryResolverService: 'Study artifactory'
+#     sourceRepo: 'study-gradle-dev'
+#     artifactoryDeployerService: 'Study artifactory'
+#     targetRepo: 'study-gradle-dev-local'
 
 
 # - task: CopyFiles@2
