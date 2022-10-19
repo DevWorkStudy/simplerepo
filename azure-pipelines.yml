@@ -48,6 +48,7 @@ steps:
     artifactoryDeployerService: 'Study artifactory'
     targetRepo: 'study-gradle-dev-local'
     useWrapper: true
+    usesPlugin: true
     deployIvyDesc: false
 
 # - task: JFrogGradle@1
