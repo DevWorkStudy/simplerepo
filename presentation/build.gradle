@@ -44,33 +44,7 @@ dependencies {
 
 
 artifactoryPublish.skip = true
-//
-//artifactory {
-//    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
-//    publish {
-//        repository {
-//            repoKey = 'study-gradle-dev-local'
-//            username = "${artifactory_user}"
-//            password = "${artifactory_password}"
-//            maven = true
-//
-//        }
-//        defaults {
-//            publication('mavenJava')
-//            publishArtifacts = true
-//            publishPom
-//        }
-//    }
-//    resolve {
-//        repository {
-//            repoKey = 'study-gradle-dev'
-//            username = "${artifactory_user}"
-//            password = "${artifactory_password}"
-//            maven = true
-//
-//        }
-//    }
-//}
+
 
 afterEvaluate {
     publishing {
@@ -79,7 +53,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.study'
                 artifactId = 'presentation'
-                version = "0.0.3"
+                version = "0.0.4"
             }
         }
     }
