@@ -26,7 +26,7 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'assembleRelease'
+    tasks: 'assemble'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
@@ -37,7 +37,7 @@ steps:
 - task: AndroidSigning@3
   inputs:
      apkFiles: '**/*.apk'
-     apksignerKeystoreFile: 'studydev'
+     apksignerKeystoreFile: 'studydev.jks'
      apksignerKeystorePassword: 'key_store_password'
      apksignerKeystoreAlias: 'key_alias'
      apksignerKeyPassword: 'key_password'
@@ -56,7 +56,7 @@ steps:
   inputs:
     serverEndpoint: 'app center'
     appSlug: 'DevWorkStudy/DevStudyApp'
-    appFile: '$(Build.ArtifactStagingDirectory)/app/build/outputs/apk/debug/app-release.apk'
+    appFile: '**/*.apk'
     symbolsOption: 'Android'
     releaseNotesOption: 'input'
     releaseNotesInput: 'New version realse'
