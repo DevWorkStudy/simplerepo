@@ -44,7 +44,7 @@ steps:
 - task: JFrogGradle@1
   inputs:
     gradleBuildFile: 'build.gradle'
-    tasks: 'presentation:artifactoryPublish network:artifactoryPublish'
+    tasks: 'presentation:artifactoryPublish'
     artifactoryDeployerService: 'Study artifactory'
     targetRepo: 'study-gradle-dev-local'
     useWrapper: true
