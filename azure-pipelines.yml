@@ -22,7 +22,7 @@ jobs:
     inputs:
       script: |
         echo $(job_name)
-        echo $[variablegroups.study_sign_vars.key_alias]
+        echo $(key_alias)
         echo Hello world
 
 # steps:
