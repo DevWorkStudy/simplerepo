@@ -18,12 +18,24 @@ jobs:
   - name: job_name
     value: 'build_test_vars'
   steps:
-  - task: CmdLine@2
+  - task: AndroidSigning@3
     inputs:
-      script: |
-        echo $(job_name)
-        echo $(key_alias)
-        echo Hello world
+     apkFiles: '**/*.apk'
+     apksignerKeystoreFile: 'studydev'
+     apksignerKeystorePassword: 'key_store_password'
+     apksignerKeystoreAlias: 'key_alias'
+     apksignerKeyPassword: 'key_password'
+
+  - task: CopyFiles@2
+    inputs:
+      Contents: '**/*.apk'
+      TargetFolder: '$(build.artifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'output'
+      publishLocation: 'Container'
 
 # steps:
 
