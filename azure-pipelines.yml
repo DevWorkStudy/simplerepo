@@ -6,19 +6,32 @@
 # - main
 # trigger:
 
-variables:
-- group: study_sign_vars
+
 
 pool:
   vmImage: 'macos-latest'
 
-steps:
+jobs:
+- job:
+  variables:
+  - group: study_sign_vars
+  - name: job_name
+    value: 'build_test_vars'
+  steps:
+  - task: CmdLine@2
+    inputs:
+      script: |
+        echo $(job_name)
+        echo $key_alias
+        echo Hello world
 
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '11'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+# steps:
+
+# - task: JavaToolInstaller@0
+#   inputs:
+#     versionSpec: '11'
+#     jdkArchitectureOption: 'x64'
+#     jdkSourceOption: 'PreInstalled'
 
 # # - task: Gradle@3
 # #   inputs:
