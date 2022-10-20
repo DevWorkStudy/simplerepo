@@ -38,9 +38,9 @@ steps:
   inputs:
      apkFiles: '**/*.apk'
      apksignerKeystoreFile: 'studydev'
-     apksignerKeystorePassword: 'key_store_password'
-     apksignerKeystoreAlias: 'key_alias'
-     apksignerKeyPassword: 'key_password'
+     apksignerKeystorePassword: '$(key_store_password)'
+     apksignerKeystoreAlias: '$(key_alias)'
+     apksignerKeyPassword: '$(key_password)'
 - task: CopyFiles@2
   inputs:
     Contents: '**/*.apk'
