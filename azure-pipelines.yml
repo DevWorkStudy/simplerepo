@@ -7,35 +7,76 @@
 # trigger:
 
 
+variables:
+  - group: study_sign_vars
+  - name: job_name
+    value: 'build_test_vars'
 
 pool:
   vmImage: 'macos-latest'
 
-jobs:
-- job:
-  variables:
-  - group: study_sign_vars
-  - name: job_name
-    value: 'build_test_vars'
-  steps:
-  - task: AndroidSigning@3
-    inputs:
+steps:
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'assembleRelease'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
+
+- task: AndroidSigning@3
+  inputs:
      apkFiles: '**/*.apk'
      apksignerKeystoreFile: 'studydev'
      apksignerKeystorePassword: 'key_store_password'
      apksignerKeystoreAlias: 'key_alias'
      apksignerKeyPassword: 'key_password'
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/*.apk'
+    TargetFolder: '$(build.artifactStagingDirectory)'
 
-  - task: CopyFiles@2
-    inputs:
-      Contents: '**/*.apk'
-      TargetFolder: '$(build.artifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'output'
+    publishLocation: 'Container'
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'output'
-      publishLocation: 'Container'
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'app center'
+    appSlug: 'DevWorkStudy/DevStudyApp'
+    appFile: '$(Build.ArtifactStagingDirectory)/app/build/outputs/apk/debug/app-release.apk'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    releaseNotesInput: 'New version realse'
+    destinationType: 'groups'
+
+# jobs:
+# - job:
+#   variables:
+#   - group: study_sign_vars
+#   - name: job_name
+#     value: 'build_test_vars'
+#   steps:
+#   - task: AndroidSigning@3
+#     inputs:
+#      apkFiles: '**/*.apk'
+#      apksignerKeystoreFile: 'studydev'
+#      apksignerKeystorePassword: 'key_store_password'
+#      apksignerKeystoreAlias: 'key_alias'
+#      apksignerKeyPassword: 'key_password'
+
 
 # steps:
 
