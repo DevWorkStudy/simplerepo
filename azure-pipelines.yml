@@ -64,7 +64,7 @@ steps:
   inputs:
     serverEndpoint: 'app center'
     appSlug: 'DevWorkStudy/DevStudyApp'
-    appFile: '**/*.apk'
+    appFile: '$(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release.apk'
     symbolsOption: 'Android'
     releaseNotesOption: 'input'
     releaseNotesInput: 'New version realse'
