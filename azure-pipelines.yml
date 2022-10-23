@@ -46,16 +46,18 @@ steps:
     Contents: '**/*.apk'
     TargetFolder: '$(build.artifactStagingDirectory)'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'output'
-    publishLocation: 'Container'
 
 - task: CmdLine@2
   inputs:
     script: mv $(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release-unsigned.apk
       $(build.artifactstagingdirectory)/app/build/outputs/apk/release/app-release.apk
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release.apk'
+    ArtifactName: 'output'
+    publishLocation: 'Container'
+
 
 # - task: AppCenterDistribute@3
 #   inputs:
