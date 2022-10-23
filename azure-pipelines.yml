@@ -52,10 +52,6 @@ steps:
     script: mv $(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release-unsigned.apk
       $(build.artifactstagingdirectory)/app/build/outputs/apk/release/app-release.apk
 
-- task: CmdLine@2
-  inputs:
-    script: rm $(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release-unsigned.apk
-
 
 # - task: PublishBuildArtifacts@1
 #   inputs:
