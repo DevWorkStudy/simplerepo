@@ -54,7 +54,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: ren $(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release-unsigned.apk
+    script: mv $(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release-unsigned.apk
       $(build.artifactstagingdirectory)/app/build/outputs/apk/release/app-release.apk
 
 # - task: AppCenterDistribute@3
