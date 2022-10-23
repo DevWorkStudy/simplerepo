@@ -52,15 +52,21 @@ steps:
     ArtifactName: 'output'
     publishLocation: 'Container'
 
-- task: AppCenterDistribute@3
+- task: CmdLine@2
   inputs:
-    serverEndpoint: 'app center'
-    appSlug: 'DevWorkStudy/DevStudyApp'
-    appFile: '**/*.apk'
-    symbolsOption: 'Android'
-    releaseNotesOption: 'input'
-    releaseNotesInput: 'New version realse'
-    destinationType: 'groups'
+    script: rename $(build.artifactstagingdirectory)/app/build/outputs/apk/release/app-release-unsigned.apk
+      $(build.artifactstagingdirectory)/app/build/outputs/apk/release/app-release.apk
+
+
+# - task: AppCenterDistribute@3
+#   inputs:
+#     serverEndpoint: 'app center'
+#     appSlug: 'DevWorkStudy/DevStudyApp'
+#     appFile: '**/*.apk'
+#     symbolsOption: 'Android'
+#     releaseNotesOption: 'input'
+#     releaseNotesInput: 'New version realse'
+#     destinationType: 'groups'
 
 
 # jobs:
