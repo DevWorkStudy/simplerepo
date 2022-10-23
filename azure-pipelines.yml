@@ -41,10 +41,10 @@ steps:
      apksignerKeystorePassword: '$(key_store_password)'
      apksignerKeystoreAlias: '$(key_alias)'
      apksignerKeyPassword: '$(key_password)'
-- task: CopyFiles@2
-  inputs:
-    Contents: '**/*.apk'
-    TargetFolder: '$(build.artifactStagingDirectory)'
+# - task: CopyFiles@2
+#   inputs:
+#     Contents: '**/*.apk'
+#     TargetFolder: '$(build.artifactStagingDirectory)'
 
 
 - task: CmdLine@2
@@ -52,11 +52,16 @@ steps:
     script: mv $(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release-unsigned.apk
       $(build.artifactstagingdirectory)/app/build/outputs/apk/release/app-release.apk
 
-- task: PublishBuildArtifacts@1
+- task: CmdLine@2
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release.apk'
-    ArtifactName: 'output'
-    publishLocation: 'Container'
+    script: rm $(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release-unsigned.apk
+
+
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)/app/build/outputs/apk/release/app-release.apk'
+#     ArtifactName: 'output'
+#     publishLocation: 'Container'
 
 
 - task: AppCenterDistribute@3
