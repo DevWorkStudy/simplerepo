@@ -41,10 +41,10 @@ steps:
      apksignerKeystorePassword: '$(key_store_password)'
      apksignerKeystoreAlias: '$(key_alias)'
      apksignerKeyPassword: '$(key_password)'
-# - task: CopyFiles@2
-#   inputs:
-#     Contents: '**/*.apk'
-#     TargetFolder: '$(build.artifactStagingDirectory)'
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/*.apk'
+    TargetFolder: '$(build.artifactStagingDirectory)'
 
 
 - task: CmdLine@2
