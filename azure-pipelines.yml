@@ -6,6 +6,7 @@
 trigger:
 - main
 
+name: Main Brunch pipline
 
 variables:
   - group: study_sign_vars
