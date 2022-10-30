@@ -12,6 +12,8 @@ android {
     defaultConfig {
         minSdk 24
         targetSdk 32
+        versionCode 3
+        versionName "0.0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -57,6 +59,12 @@ dependencies {
     def ktor_version = "2.1.2"
     implementation "io.ktor:ktor-client-core:$ktor_version"
     implementation "io.ktor:ktor-client-cio:$ktor_version"
+}
+
+task getVersionName {
+    doLast {
+        println android.defaultConfig.versionName
+    }
 }
 
 
